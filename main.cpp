@@ -8,5 +8,7 @@ int main() {
     array.add(2);
     array.add(3);
     array.print();
+    array.removeElement(1);
+    array.print();
     return 0;
 }

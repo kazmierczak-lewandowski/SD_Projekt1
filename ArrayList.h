@@ -33,13 +33,37 @@ class ArrayList {
       elements = new T[capacity];
       }
     void print() const {
+        std::cout << '[';
         for (long i = 0; i < size; i++) {
-            std::cout << elements[i] << ", ";
+            std::cout << elements[i];
+            if (i != size-1) {
+                std::cout << ", ";
+            }
+            else
+                std::cout << ']';
+
         }
+        std::cout << std::endl;
     }
     void add(T element) {
         ensureCapacity();
         elements[size++] = element;
+    }
+    void removeIndex(const int index) {
+        for (long i = index; i < size-1; i++) {
+            elements[i] = elements[i+1];
+        }
+        elements[size];
+        size--;
+
+    }
+    void removeElement(T element) {
+        for (long i = 0; i < size; i++) {
+            if (elements[i] == element) {
+                removeIndex(i);
+                return;
+            }
+        }
     }
 };
 
