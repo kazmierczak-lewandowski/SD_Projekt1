@@ -49,7 +49,7 @@ class ArrayList {
         ensureCapacity();
         elements[size++] = element;
     }
-    void removeIndex(const int index) {
+    void removeIndex(const long index) {
         for (long i = index; i < size-1; i++) {
             elements[i] = elements[i+1];
         }
@@ -64,6 +64,32 @@ class ArrayList {
                 return;
             }
         }
+    }
+    void clear() {
+        size = 0;
+    }
+    [[nodiscard]] bool isEmpty() const {
+        return size == 0;
+    }
+    T getFirst() const {
+        return elements[0];
+    }
+    T getLast() const {
+        return elements[size-1];
+    }
+    T get(long index) const {
+        return elements[index];
+    }
+    long indexOf(T element) const {
+        for (long i = 0; i < size; i++) {
+            if (elements[i] == element) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    [[nodiscard]] long getSize() const {
+        return size;
     }
 };
 
