@@ -31,7 +31,7 @@ class ArrayList {
     explicit ArrayList(const int capacity = DEFAULT_CAPACITY) : capacity(capacity), size(0L) {
       if (capacity <= 0) throw std::invalid_argument("capacity must be greater than 0");
       elements = new T[capacity];
-      }
+    }
     void print() const {
         std::cout << '[';
         for (long i = 0; i < size; i++) {
@@ -92,7 +92,5 @@ class ArrayList {
         return size;
     }
 };
-
-
 
 #endif //ARRAYLIST_H
