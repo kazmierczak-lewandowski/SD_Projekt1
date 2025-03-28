@@ -5,12 +5,13 @@
 #ifndef ARRAYLIST_H
 #define ARRAYLIST_H
 #include <iostream>
+#include <memory>
 
 template <typename T>
 class ArrayList {
     private:
       long capacity;
-      long size;
+      long size = 0L;
       T* elements;
       void ensureCapacity() {
           if (capacity == size+1) {
@@ -18,19 +19,18 @@ class ArrayList {
           }
       };
     void grow() {
-        auto temp = new T[size*2];
+        auto temp = std::make_unique<T[]>(size*2);
         for (long i = 0; i < size; i++) {
             temp[i] = elements[i];
         }
-        delete[] elements;
         elements = temp;
     };
   public:
     static constexpr long DEFAULT_CAPACITY = 10;
 
-    explicit ArrayList(const int capacity = DEFAULT_CAPACITY) : capacity(capacity), size(0L) {
+    explicit ArrayList(const int capacity = DEFAULT_CAPACITY) : capacity(capacity) {
       if (capacity <= 0) throw std::invalid_argument("capacity must be greater than 0");
-      elements = new T[capacity];
+      elements = std::make_unique<T[]>(capacity) ;
     }
     void print() const {
         std::cout << '[';
