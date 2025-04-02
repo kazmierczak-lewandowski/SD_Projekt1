@@ -15,6 +15,7 @@ void ArrayList::grow() {
     temp[i] = elements[i];
   }
   elements = std::move(temp);
+  capacity=size*2;
 }
 ArrayList::ArrayList(const int capacity) : capacity(capacity) {
   if (capacity <= 0)
@@ -37,25 +38,9 @@ void ArrayList::add(const int element) {
   elements[size] = element;
   size++;
 }
-void ArrayList::removeIndex(const long index) {
+void ArrayList::remove(const long index) {
   for (long i = index; i < size - 1; i++) {
     elements[i] = elements[i + 1];
   }
   size--;
-}
-void ArrayList::removeElement(const int element) {
-  for (long i = 0; i < size; i++) {
-    if (elements[i] == element) {
-      removeIndex(i);
-      return;
-    }
-  }
-}
-long ArrayList::indexOf(const int element) const {
-  for (long i = 0; i < size; i++) {
-    if (elements[i] == element) {
-      return i;
-    }
-  }
-  return -1;
 }

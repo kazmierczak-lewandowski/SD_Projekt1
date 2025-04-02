@@ -21,14 +21,15 @@ class ArrayList {
   explicit ArrayList(int capacity = DEFAULT_CAPACITY);
   void print() const;
   void add(int element);
-  void removeIndex(long index);
-  void removeElement(int element);
-  void clear() { size = 0; }
+  void remove(long index);
+  void clear() {
+   size = 0;
+   capacity = DEFAULT_CAPACITY;
+  }
   [[nodiscard]] bool isEmpty() const { return size == 0; }
   [[nodiscard]] int getFirst() const { return elements[0]; }
   [[nodiscard]] int getLast() const { return elements[size - 1]; }
   [[nodiscard]] int get(const long index) const { return elements[index]; }
-  [[nodiscard]] long indexOf(int element) const;
   [[nodiscard]] long getSize() const { return size; }
 };
 
