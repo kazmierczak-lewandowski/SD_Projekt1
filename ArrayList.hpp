@@ -7,7 +7,9 @@
 #include <iostream>
 #include <memory>
 
-class ArrayList {
+#include "Collection.hpp"
+
+class ArrayList final : private Collection {
  private:
   long capacity;
   long size = 0L;
@@ -19,18 +21,15 @@ class ArrayList {
   static constexpr long DEFAULT_CAPACITY = 10;
 
   explicit ArrayList(int capacity = DEFAULT_CAPACITY);
-  void print() const;
-  void add(int element);
-  void remove(long index);
-  void clear() {
-   size = 0;
-   capacity = DEFAULT_CAPACITY;
-  }
-  [[nodiscard]] bool isEmpty() const { return size == 0; }
-  [[nodiscard]] int getFirst() const { return elements[0]; }
-  [[nodiscard]] int getLast() const { return elements[size - 1]; }
-  [[nodiscard]] int get(const long index) const { return elements[index]; }
-  [[nodiscard]] long getSize() const { return size; }
+  void print() const override;
+  void add(int element) override;
+  void remove(long index) override;
+  void clear() override;
+  [[nodiscard]] bool isEmpty() const override { return size == 0; }
+  [[nodiscard]] int getFirst() const override { return elements[0]; }
+  [[nodiscard]] int getLast() const override { return elements[size - 1]; }
+  [[nodiscard]] long get(int element) const override;
+  [[nodiscard]] long getSize() const override { return size; }
 };
 
 #endif  // ARRAYLIST_HPP

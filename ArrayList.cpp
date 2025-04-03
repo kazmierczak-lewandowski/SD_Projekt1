@@ -5,9 +5,9 @@
 #include "ArrayList.hpp"
 
 void ArrayList::ensureCapacity() {
-    if (capacity == size+1) {
-        grow();
-    }
+  if (capacity == size + 1) {
+    grow();
+  }
 }
 void ArrayList::grow() {
   auto temp = std::make_unique<int[]>(size * 2);
@@ -15,7 +15,7 @@ void ArrayList::grow() {
     temp[i] = elements[i];
   }
   elements = std::move(temp);
-  capacity=size*2;
+  capacity = size * 2;
 }
 ArrayList::ArrayList(const int capacity) : capacity(capacity) {
   if (capacity <= 0)
@@ -43,4 +43,16 @@ void ArrayList::remove(const long index) {
     elements[i] = elements[i + 1];
   }
   size--;
+}
+void ArrayList::clear() {
+  size = 0;
+  capacity = DEFAULT_CAPACITY;
+}
+long ArrayList::get(const int element) const {
+  for (long i = 0; i < size; i++) {
+    if (elements[i] == element) {
+      return i;
+    }
+  }
+  return -1;
 }
