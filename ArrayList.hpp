@@ -29,14 +29,7 @@ class ArrayList {
   [[nodiscard]] bool isEmpty() const { return size == 0; }
   [[nodiscard]] int getFirst() const { return elements[0]; }
   [[nodiscard]] int getLast() const { return elements[size - 1]; }
-  [[nodiscard]] long getIndex(const int element) const {
-    for (long i = 0; i < size; i++) {
-      if (elements[i] == element) {
-        return i;
-      }
-    }
-    return -1;
-  }
+  [[nodiscard]] long getIndex(const int element) const;
   [[nodiscard]] long getSize() const { return size; }
 };
 
