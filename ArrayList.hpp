@@ -31,7 +31,7 @@ class ArrayList final : Collection {
   [[nodiscard]] bool isEmpty() const override { return size == 0; }
   [[nodiscard]] int getFirst() const override { return elements[0]; }
   [[nodiscard]] int getLast() const override { return elements[size - 1]; }
-  [[nodiscard]] int get(const long index) const override { return elements[index]; }
+  [[nodiscard]] long getIndex(int element) const override;
   [[nodiscard]] long getSize() const override { return size; }
 };
 
