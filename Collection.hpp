@@ -16,10 +16,10 @@ class Collection {
   virtual void add(int element) = 0;
   virtual void remove(long index) = 0;
   virtual void clear() = 0;
-  [[nodiscard]] virtual bool isEmpty();
+  [[nodiscard]] virtual bool isEmpty() const;
   [[nodiscard]] virtual int getFirst() const = 0;
   [[nodiscard]] virtual int getLast() const = 0;
-  [[nodiscard]] virtual int get(long index) = 0;
+  [[nodiscard]] virtual int get(long index) const = 0;
   [[nodiscard]] virtual long getSize() const = 0;
 };
 
