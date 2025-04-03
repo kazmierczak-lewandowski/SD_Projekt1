@@ -10,8 +10,6 @@
 class Collection {
  public:
   virtual ~Collection() = default;
-
- private:
   virtual void print() const = 0;
   virtual void add(int element) = 0;
   virtual void remove(long index) = 0;
