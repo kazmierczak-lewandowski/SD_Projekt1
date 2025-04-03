@@ -19,7 +19,7 @@ class Collection {
   [[nodiscard]] virtual bool isEmpty() const;
   [[nodiscard]] virtual int getFirst() const = 0;
   [[nodiscard]] virtual int getLast() const = 0;
-  [[nodiscard]] virtual int get(long index) const = 0;
+  [[nodiscard]] virtual long get(int element) const = 0;
   [[nodiscard]] virtual long getSize() const = 0;
 };
 

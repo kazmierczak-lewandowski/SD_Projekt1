@@ -24,14 +24,11 @@ class ArrayList final : Collection {
   void print() const override;
   void add(int element) override;
   void remove(long index) override;
-  void clear() override {
-   size = 0;
-   capacity = DEFAULT_CAPACITY;
-  }
+  void clear() override;
   [[nodiscard]] bool isEmpty() const override { return size == 0; }
   [[nodiscard]] int getFirst() const override { return elements[0]; }
   [[nodiscard]] int getLast() const override { return elements[size - 1]; }
-  [[nodiscard]] long getIndex(int element) const override;
+  [[nodiscard]] long get(int element) const override;
   [[nodiscard]] long getSize() const override { return size; }
 };
 

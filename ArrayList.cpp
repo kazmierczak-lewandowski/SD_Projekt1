@@ -44,7 +44,11 @@ void ArrayList::remove(const long index) {
   }
   size--;
 }
-long ArrayList::getIndex(const int element) const {
+void ArrayList::clear() {
+  size = 0;
+  capacity = DEFAULT_CAPACITY;
+}
+long ArrayList::get(const int element) const {
   for (long i = 0; i < size; i++) {
     if (elements[i] == element) {
       return i;
