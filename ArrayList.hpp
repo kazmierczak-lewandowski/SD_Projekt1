@@ -9,7 +9,7 @@
 
 #include "Collection.hpp"
 
-class ArrayList final : Collection {
+class ArrayList final : private Collection {
  private:
   long capacity;
   long size = 0L;
