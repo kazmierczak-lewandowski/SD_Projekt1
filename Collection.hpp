@@ -16,7 +16,19 @@ public:
    */
   virtual ~Collection() = default;
 
-private:
+protected:
+  void increaseSize() { size++; }
+  void decreaseSize() { size--; }
+  void clearSize(){ size=0; }
+ public:
+  /**
+   * \brief Gets the size of the collection.
+   * \return The number of elements in the collection.
+   */
+  [[nodiscard]] long getSize() const { return size; }
+
+ private:
+  long size = 0L; ///< The current number of elements in the array.
   /**
    * \brief Prints the elements of the collection.
    */
@@ -63,12 +75,6 @@ private:
    * \return The index of the element, or -1 if not found.
    */
   [[nodiscard]] virtual long get(int element) const = 0;
-
-  /**
-   * \brief Gets the size of the collection.
-   * \return The number of elements in the collection.
-   */
-  [[nodiscard]] virtual long getSize() const = 0;
 };
 
 #endif // COLLECTION_HPP

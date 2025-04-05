@@ -4,42 +4,40 @@
 
 #include "LinkedList.hpp"
 
-
-void LinkedList::add(int element, long index) {
+void LinkedList::add(int element, const long index) {
   auto newNode = std::make_unique<Node>(element);
   if (index == 0) {
     newNode->next = std::move(head);
     head = std::move(newNode);
-    if (size == 0) {
+    if (isEmpty()) {
       tail = head.get();
     }
-  }
-  else {
+  } else {
     Node* current = head.get();
-    for (long i = 0; i<index-1; i++) {
+    for (long i = 0; i < index - 1; i++) {
       current = current->next.get();
     }
     newNode->next = std::move(current->next);
     current->next = std::move(newNode);
-    if (index == size) {
+    if (index == getSize()) {
       tail = current->next.get();
     }
   }
-  size++;
+  increaseSize();
 }
 
 void LinkedList::clear() {
   head = nullptr;
   tail = nullptr;
-  size = 0;
+  clearSize();
 }
-long LinkedList::get(int element) const {
+long LinkedList::get(const int element) const {
   const Node* current = head.get();
   long index = 0;
   while (current != nullptr) {
     if (current->data == element) return index;
     current = current->next.get();
-    index ++;
+    index++;
   }
   return -1;
 }
@@ -55,22 +53,22 @@ void LinkedList::print() const {
   }
   std::cout << ']' << std::endl;
 }
-void LinkedList::remove(long index) {
+void LinkedList::remove(const long index) {
   if (index == 0) {
     head = std::move(head->next);
-    if (size == 1) {
+    if (getSize() == 1) {
       tail = nullptr;
     }
   } else {
     Node* current = head.get();
-    for (long i = 0; i < index - 1; ++i) {
+    for (long i = 0; i < index - 1; i++) {
       current = current->next.get();
     }
     current->next = std::move(current->next->next);
-    if (index == size - 1) {
+    if (index == getSize() - 1) {
       tail = current;
     }
   }
-  --size;
+  decreaseSize();
 }
 LinkedList::LinkedList() = default;

@@ -16,7 +16,6 @@
 class ArrayList final : private Collection {
 private:
  long capacity; ///< The current capacity of the array.
- long size = 0L; ///< The current number of elements in the array.
  std::unique_ptr<int[]> elements; ///< The array of elements.
 
  /**
@@ -64,7 +63,7 @@ public:
  /**
   * \copydoc Collection::isEmpty() const
   */
- [[nodiscard]] bool isEmpty() const override { return size == 0; }
+ [[nodiscard]] bool isEmpty() const override { return getSize() == 0; }
 
  /**
   * \copydoc Collection::getFirst() const
@@ -74,17 +73,12 @@ public:
  /**
   * \copydoc Collection::getLast() const
   */
- [[nodiscard]] int getLast() const override { return elements[size - 1]; }
+ [[nodiscard]] int getLast() const override { return elements[getSize() - 1]; }
 
  /**
   * \copydoc Collection::get(int) const
   */
  [[nodiscard]] long get(int element) const override;
-
- /**
-  * \copydoc Collection::getSize() const
-  */
- [[nodiscard]] long getSize() const override { return size; }
 };
 
 #endif  // ARRAYLIST_HPP
