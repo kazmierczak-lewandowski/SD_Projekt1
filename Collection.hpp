@@ -35,10 +35,11 @@ protected:
   virtual void print() const = 0;
 
   /**
-   * \brief Adds an element to the collection.
-   * \param element The element to add.
-   */
-  virtual void add(int element) = 0;
+  * \brief Adds an element to the collection at the specified index.
+  * \param element The element to add.
+  * \param index The index at which to add the element.
+  */
+  virtual void add(int element, long index) = 0;
 
   /**
    * \brief Removes an element from the collection at the specified index.

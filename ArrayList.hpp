@@ -48,7 +48,7 @@ public:
  /**
   * \copydoc Collection::add(int)
   */
- void add(int element) override;
+ void add(int element, long index) override;
 
  /**
   * \copydoc Collection::remove(long)
