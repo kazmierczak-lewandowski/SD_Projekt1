@@ -7,5 +7,6 @@ include_directories(${CURSES_INCLUDE_DIR})
 add_executable(SD_Projekt1 main.cpp
         ArrayList.cpp
         Collection.hpp
+        LinkedList.cpp
 )
 target_link_libraries(SD_Projekt1 ${CURSES_LIBRARIES})
