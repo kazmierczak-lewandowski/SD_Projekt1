@@ -33,9 +33,15 @@ void ArrayList::print() const {
   }
   std::cout << std::endl;
 }
-void ArrayList::add(const int element) {
+void ArrayList::add(const int element, const long index) {
   ensureCapacity();
-  elements[size] = element;
+  if (index < 0 || index > size) {
+    throw std::out_of_range("Index out of range");
+  }
+  for (long i = size; i > index; i--) {
+      elements[i] = elements[i - 1];
+  }
+  elements[index] = element;
   size++;
 }
 void ArrayList::remove(const long index) {
