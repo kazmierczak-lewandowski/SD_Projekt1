@@ -52,7 +52,7 @@ public:
   /**
    * \copydoc Collection::isEmpty() const
    */
-  [[nodiscard]] bool isEmpty() const override { return size == 0; }
+  [[nodiscard]] bool isEmpty() const override { return getSize() == 0; }
 
   /**
    * \copydoc Collection::getFirst() const
