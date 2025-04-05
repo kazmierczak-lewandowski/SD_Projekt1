@@ -13,7 +13,7 @@
  * \class LinkedList
  * \brief Implementacja listy połączonej klasy Collection.
  */
-class LinkedList final : Collection {
+class LinkedList final : private Collection {
 private:
   struct Node {
     std::unique_ptr<Node> next = nullptr; ///< Wskaźnik na następny węzeł.
