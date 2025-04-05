@@ -57,7 +57,7 @@ class Collection {
    * \brief Checks if the collection is empty.
    * \return True if the collection is empty, false otherwise.
    */
-  [[nodiscard]] virtual bool isEmpty() const = 0;
+  [[nodiscard]] bool isEmpty() const { return getSize() == 0; }
 
   /**
    * \brief Gets the first element in the collection.

@@ -50,11 +50,6 @@ public:
   void clear() override;
 
   /**
-   * \copydoc Collection::isEmpty() const
-   */
-  [[nodiscard]] bool isEmpty() const override { return getSize() == 0; }
-
-  /**
    * \copydoc Collection::getFirst() const
    */
   [[nodiscard]] int getFirst() const override { return head->data; }
