@@ -36,7 +36,7 @@ void ArrayList::print() const {
 void ArrayList::add(const int element, const long index) {
   ensureCapacity();
   for (long i = getSize(); i > index; i--) {
-      elements[i] = elements[i - 1];
+    elements[i] = elements[i - 1];
   }
   elements[index] = element;
   increaseSize();

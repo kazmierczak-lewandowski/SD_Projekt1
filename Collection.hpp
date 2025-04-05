@@ -10,16 +10,17 @@
  * \brief Abstract base class for a collection of elements.
  */
 class Collection {
-public:
+ public:
   /**
    * \brief Virtual destructor for the Collection class.
    */
   virtual ~Collection() = default;
 
-protected:
+ protected:
   void increaseSize() { size++; }
   void decreaseSize() { size--; }
-  void clearSize(){ size=0; }
+  void clearSize() { size = 0; }
+
  public:
   /**
    * \brief Gets the size of the collection.
@@ -28,17 +29,17 @@ protected:
   [[nodiscard]] long getSize() const { return size; }
 
  private:
-  long size = 0L; ///< The current number of elements in the array.
+  long size = 0L;  ///< The current number of elements in the array.
   /**
    * \brief Prints the elements of the collection.
    */
   virtual void print() const = 0;
 
   /**
-  * \brief Adds an element to the collection at the specified index.
-  * \param element The element to add.
-  * \param index The index at which to add the element.
-  */
+   * \brief Adds an element to the collection at the specified index.
+   * \param element The element to add.
+   * \param index The index at which to add the element.
+   */
   virtual void add(int element, long index) = 0;
 
   /**
@@ -78,4 +79,4 @@ protected:
   [[nodiscard]] virtual long get(int element) const = 0;
 };
 
-#endif // COLLECTION_HPP
+#endif  // COLLECTION_HPP
