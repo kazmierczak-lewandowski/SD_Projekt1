@@ -4,6 +4,8 @@
 
 #include "LinkedList.hpp"
 
+#include <ncurses.h>
+
 void LinkedList::add(int element, const long index) {
   auto newNode = std::make_shared<Node>(element);
   if (index == 0) {
@@ -56,16 +58,18 @@ long LinkedList::get(const int element) const {
   return -1;
 }
 void LinkedList::print() const {
+  ::clear();
   std::shared_ptr<Node> current = head;
-  std::cout << '[';
+  std::string res = "[";
   while (current != nullptr) {
-    std::cout << current->data;
+    res += std::to_string(current->data);
     current = current->next;
     if (current != nullptr) {
-      std::cout << ", ";
+      res += ", ";
     }
   }
-  std::cout << ']' << std::endl;
+  res += "]";
+  printw("%s", res.c_str());
 }
 void LinkedList::remove(const long index) {
   if (index == 0) {
