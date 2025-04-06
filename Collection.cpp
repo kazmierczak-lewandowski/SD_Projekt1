@@ -4,6 +4,7 @@
 #include "Collection.hpp"
 
 #include <fstream>
+#include <random>
 
 void Collection::fillWithRandom(Collection& collection, const int size) {
   std::random_device rd;
