@@ -11,21 +11,21 @@
 
 /**
  * \class LinkedList
- * \brief Implementacja listy połączonej klasy Collection.
+ * \brief Implementation of a linked list class derived from Collection.
  */
-class LinkedList final : private Collection {
+class LinkedList final : public Collection {
 private:
   struct Node {
-    std::unique_ptr<Node> next = nullptr; ///< Wskaźnik na następny węzeł.
-    int data; ///< Dane przechowywane w węźle.
+    std::unique_ptr<Node> next = nullptr; ///< Pointer to the next node.
+    int data; ///< Data stored in the node.
     explicit Node(int value) : data(value) {}
   };
-  std::unique_ptr<Node> head = nullptr; ///< Wskaźnik na pierwszy węzeł.
-  Node* tail = nullptr; ///< Wskaźnik na ostatni węzeł.
+  std::unique_ptr<Node> head = nullptr; ///< Pointer to the first node.
+  Node* tail = nullptr; ///< Pointer to the last node.
 
 public:
   /**
-   * \brief Konstruktor domyślny klasy LinkedList.
+   * \brief Default constructor for the LinkedList class.
    */
   explicit LinkedList();
 
