@@ -5,6 +5,11 @@
 #ifndef COLLECTION_HPP
 #define COLLECTION_HPP
 
+#include <random>
+#include <stdexcept>
+#include <string>
+#include <fstream>
+
 /**
  * \class Collection
  * \brief Abstract base class for a collection of elements.
@@ -16,7 +21,21 @@ public:
    */
   virtual ~Collection() = default;
 
-private:
+  /**
+   * \brief Fills the collection with random elements.
+   * \param collection The collection to fill.
+   * \param size The number of random elements to add.
+   */
+  static void fillWithRandom(Collection& collection, int size);
+
+  /**
+   * \brief Fills the collection with elements from a file.
+   * \param collection The collection to fill.
+   * \param filename The name of the file to read elements from.
+   */
+  static void fillFromFile(Collection& collection, const std::string& filename);
+
+ private:
   /**
    * \brief Prints the elements of the collection.
    */
