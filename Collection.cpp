@@ -2,6 +2,9 @@
 // Created by kazik on 4/6/25.
 //
 #include "Collection.hpp"
+
+#include <fstream>
+
 void Collection::fillWithRandom(Collection& collection, const int size) {
   std::random_device rd;
   std::mt19937 rand(rd());

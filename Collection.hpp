@@ -6,16 +6,14 @@
 #define COLLECTION_HPP
 
 #include <random>
-#include <stdexcept>
 #include <string>
-#include <fstream>
 
 /**
  * \class Collection
  * \brief Abstract base class for a collection of elements.
  */
 class Collection {
-public:
+ public:
   /**
    * \brief Virtual destructor for the Collection class.
    */
@@ -90,4 +88,4 @@ public:
   [[nodiscard]] virtual long getSize() const = 0;
 };
 
-#endif // COLLECTION_HPP
+#endif  // COLLECTION_HPP
