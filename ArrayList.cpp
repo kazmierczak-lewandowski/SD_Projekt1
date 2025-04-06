@@ -25,13 +25,9 @@ ArrayList::ArrayList(const int capacity) : capacity(capacity) {
 void ArrayList::print() const {
   std::cout << '[';
   for (long i = 0; i < getSize(); i++) {
-    std::cout << elements[i];
-    if (i != getSize() - 1) {
-      std::cout << ", ";
-    } else
-      std::cout << ']';
+    std::cout << elements[i] << ", ";
   }
-  std::cout << std::endl;
+  std::cout << ']' << std::endl;
 }
 void ArrayList::add(const int element, const long index) {
   ensureCapacity();
@@ -41,6 +37,12 @@ void ArrayList::add(const int element, const long index) {
   elements[index] = element;
   increaseSize();
 }
+void ArrayList::add(const int element) {
+  ensureCapacity();
+  elements[getSize()] = element;
+  increaseSize();
+}
+
 void ArrayList::remove(const long index) {
   for (long i = index; i < getSize() - 1; i++) {
     elements[i] = elements[i + 1];

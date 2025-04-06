@@ -5,24 +5,38 @@
 #include "LinkedList.hpp"
 
 void LinkedList::add(int element, const long index) {
-  auto newNode = std::make_unique<Node>(element);
+  auto newNode = std::make_shared<Node>(element);
   if (index == 0) {
     newNode->next = std::move(head);
     head = std::move(newNode);
     if (isEmpty()) {
-      tail = head.get();
+      tail = head;
     }
-  } else {
-    Node* current = head.get();
-    for (long i = 0; i < index - 1; i++) {
-      current = current->next.get();
-    }
-    newNode->next = std::move(current->next);
-    current->next = std::move(newNode);
-    if (index == getSize()) {
-      tail = current->next.get();
-    }
+    increaseSize();
+    return;
   }
+  std::shared_ptr<Node> current = head;
+  for (long i = 0; i < index - 1; i++) {
+    current = current->next;
+  }
+  newNode->next = std::move(current->next);
+  current->next = std::move(newNode);
+  if (index == getSize()) {
+    tail = current->next;
+  }
+  increaseSize();
+}
+void LinkedList::add(int element) {
+  auto newNode = std::make_shared<Node>(element);
+  if (isEmpty()) {
+    newNode->next = nullptr;
+    head = std::move(newNode);
+    tail = head;
+    increaseSize();
+    return;
+  }
+  tail->next = move(newNode);
+  tail = tail->next;
   increaseSize();
 }
 
@@ -32,21 +46,21 @@ void LinkedList::clear() {
   clearSize();
 }
 long LinkedList::get(const int element) const {
-  const Node* current = head.get();
+  std::shared_ptr<Node> current = head;
   long index = 0;
   while (current != nullptr) {
     if (current->data == element) return index;
-    current = current->next.get();
+    current = current->next;
     index++;
   }
   return -1;
 }
 void LinkedList::print() const {
-  const Node* current = head.get();
+  std::shared_ptr<Node> current = head;
   std::cout << '[';
   while (current != nullptr) {
     std::cout << current->data;
-    current = current->next.get();
+    current = current->next;
     if (current != nullptr) {
       std::cout << ", ";
     }
@@ -59,16 +73,16 @@ void LinkedList::remove(const long index) {
     if (getSize() == 1) {
       tail = nullptr;
     }
-  } else {
-    Node* current = head.get();
-    for (long i = 0; i < index - 1; i++) {
-      current = current->next.get();
-    }
-    current->next = std::move(current->next->next);
-    if (index == getSize() - 1) {
-      tail = current;
-    }
+    decreaseSize();
+    return;
+  }
+  auto current = head;
+  for (long i = 0; i < index-1; i++) {
+    current = current->next;
+  }
+  current->next = std::move(current->next->next);
+  if (index == getSize() - 1) {
+    tail = current;
   }
   decreaseSize();
 }
-LinkedList::LinkedList() = default;

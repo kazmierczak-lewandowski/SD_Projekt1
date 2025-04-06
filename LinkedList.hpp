@@ -16,18 +16,18 @@
 class LinkedList final : public Collection {
 private:
   struct Node {
-    std::unique_ptr<Node> next = nullptr; ///< Pointer to the next node.
+    std::shared_ptr<Node> next = nullptr; ///< Pointer to the next node.
     int data; ///< Data stored in the node.
-    explicit Node(int value) : data(value) {}
+    explicit Node(const int value) : data(value) {}
   };
-  std::unique_ptr<Node> head = nullptr; ///< Pointer to the first node.
-  Node* tail = nullptr; ///< Pointer to the last node.
+  std::shared_ptr<Node> head = nullptr; ///< Pointer to the first node.
+  std::shared_ptr<Node> tail = nullptr; ///< Pointer to the last node.
 
 public:
   /**
    * \brief Default constructor for the LinkedList class.
    */
-  explicit LinkedList();
+  explicit LinkedList() = default;
 
   /**
    * \copydoc Collection::print() const
@@ -38,7 +38,10 @@ public:
    * \copydoc Collection::add(int, long)
    */
   void add(int element, long index) override;
-
+  /**
+   * \copydoc Collection::add(int)
+   */
+  void add(int element) override;
   /**
    * \copydoc Collection::remove(long)
    */

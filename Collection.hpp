@@ -12,11 +12,8 @@
  * \brief Abstract base class for a collection of elements.
  */
 class Collection {
- public:
-  /**
-   * \brief Virtual destructor for the Collection class.
-   */
-  virtual ~Collection() = default;
+ private:
+  long size = 0L;  ///< The current number of elements in the array.
 
  protected:
   void increaseSize() { size++; }
@@ -25,13 +22,15 @@ class Collection {
 
  public:
   /**
+   * \brief Virtual destructor for the Collection class.
+   */
+  virtual ~Collection() = default;
+  /**
    * \brief Gets the size of the collection.
    * \return The number of elements in the collection.
    */
   [[nodiscard]] long getSize() const { return size; }
 
- private:
-  long size = 0L;  ///< The current number of elements in the array.
   /**
    * \brief Fills the collection with random elements.
    * \param collection The collection to fill.
@@ -53,6 +52,7 @@ class Collection {
 
   /**
    * \brief Adds an element to the collection at the specified index.
+   * \details Can be used to add at the end using index equal to size.
    * \param element The element to add.
    * \param index The index at which to add the element.
    */
