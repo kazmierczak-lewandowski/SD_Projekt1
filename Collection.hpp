@@ -12,11 +12,24 @@
  * \brief Abstract base class for a collection of elements.
  */
 class Collection {
+ private:
+  long size = 0L;  ///< The current number of elements in the array.
+
+ protected:
+  void increaseSize() { size++; }
+  void decreaseSize() { size--; }
+  void clearSize() { size = 0; }
+
  public:
   /**
    * \brief Virtual destructor for the Collection class.
    */
   virtual ~Collection() = default;
+  /**
+   * \brief Gets the size of the collection.
+   * \return The number of elements in the collection.
+   */
+  [[nodiscard]] long getSize() const { return size; }
 
   /**
    * \brief Fills the collection with random elements.
@@ -39,6 +52,7 @@ class Collection {
 
   /**
    * \brief Adds an element to the collection at the specified index.
+   * \details Can be used to add at the end using index equal to size.
    * \param element The element to add.
    * \param index The index at which to add the element.
    */
@@ -63,7 +77,7 @@ class Collection {
    * \brief Checks if the collection is empty.
    * \return True if the collection is empty, false otherwise.
    */
-  [[nodiscard]] virtual bool isEmpty() const = 0;
+  [[nodiscard]] bool isEmpty() const { return getSize() == 0; }
 
   /**
    * \brief Gets the first element in the collection.
@@ -83,12 +97,6 @@ class Collection {
    * \return The index of the element, or -1 if not found.
    */
   [[nodiscard]] virtual long get(int element) const = 0;
-
-  /**
-   * \brief Gets the size of the collection.
-   * \return The number of elements in the collection.
-   */
-  [[nodiscard]] virtual long getSize() const = 0;
 };
 
 #endif  // COLLECTION_HPP
