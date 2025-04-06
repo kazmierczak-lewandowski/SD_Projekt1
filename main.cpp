@@ -1,7 +1,6 @@
 #include "ArrayList.hpp"
 #include "Collection.hpp"
 #include "LinkedList.hpp"
-#include "DoublyLinkedList.hpp"
 
 #include <memory>
 #include <ncurses.h>
@@ -49,12 +48,6 @@ long getInput(const std::string &message) {
     return input;
   }
 }
-void loadFromFile(Collection& collection) {
-
-}
-void generateRandomData(Collection& collection) {
-
-}
 int main() {
   initscr();
   keypad(stdscr, true);
@@ -65,7 +58,7 @@ int main() {
   menuLoop(CHOICES, highlight);
   switch (highlight) {
   case 0: {
-    collection = std::make_unique<ArrayList>(getInput("Podaj rozmiar: "));
+    collection = std::make_unique<ArrayList>();
     break;
   }
   case 1: {
@@ -73,7 +66,7 @@ int main() {
     break;
   }
   case 2: {
-    collection = std::make_unique<DoublyLinkedList>();
+    // collection = std::make_unique<DoublyLinkedList>();
     break;
   }
   case 3: {
@@ -83,22 +76,30 @@ int main() {
   default:
     break;
   }
-  CHOICES = {"1. Dane z pliku", "2. Losowe dane", "3. Wypisz", "4. Wyszukaj",
+  CHOICES = {"1. Dane z pliku numbers.txt", "2. Losowe dane", "3. Wypisz", "4. Wyszukaj",
              "5. Dodaj",        "6. Usun",        "7. Wyjdz"};
   do {
+    highlight = 0;
     clear();
     menuLoop(CHOICES, highlight);
     switch (highlight) {
     case 0: {
-      loadFromFile(*collection);
+      Collection::fillFromFile(*collection, "numbers.txt");
+      clear();
+      printw("Wypelniono danymi z pliku\n");
+      getch();
       break;
     }
     case 1: {
-      generateRandomData(*collection);
+      Collection::fillWithRandom(*collection, getInput("Podaj rozmiar: "));
+      clear();
+      printw("Wypelniono losowymi danymi\n");
+      getch();
       break;
     }
     case 2: {
       collection->print();
+      getch();
       break;
     }
     case 3: {
@@ -110,22 +111,28 @@ int main() {
       } else {
         printw("Znaleziono element na pozycji %ld\n", res);
       }
+      getch();
       break;
     }
     case 4: {
       collection->add(static_cast<int>(getInput("Podaj element do dodania: ")));
+      clear();
+      printw("Dodano element\n");
+      getch();
       break;
     }
     case 5: {
       collection->remove(
           static_cast<int>(getInput("Podaj indeks do usuniecia: ")));
+      clear();
+      printw("Usunieto element\n");
+      getch();
       break;
     }
     default:
       break;
     }
-  } while (highlight == 7);
-  getch();
+  } while (highlight != 6);
   endwin();
   return 0;
 }
