@@ -31,8 +31,7 @@ class ArrayList final : private Collection {
   void grow();
 
  public:
-  static constexpr long DEFAULT_CAPACITY =
-      10;  ///< The default capacity of the array.
+  static constexpr long DEFAULT_CAPACITY = 10;  ///< The default capacity of the array.
 
   /**
    * \brief Constructs an ArrayList with the specified capacity.
@@ -46,10 +45,14 @@ class ArrayList final : private Collection {
    */
   void print() const override;
 
-  /**
-   * \copydoc Collection::add(int)
-   */
-  void add(int element, long index) override;
+ /**
+  * \copydoc Collection::add(int, long)
+  */
+ void add(int element, long index) override;
+ /**
+  * \copydoc Collection::add(int)
+  */
+ void add(int element) override;
 
   /**
    * \copydoc Collection::remove(long)
