@@ -5,30 +5,49 @@
 #ifndef COLLECTION_HPP
 #define COLLECTION_HPP
 
+#include <string>
+
 /**
  * \class Collection
  * \brief Abstract base class for a collection of elements.
  */
 class Collection {
-public:
+ public:
   /**
    * \brief Virtual destructor for the Collection class.
    */
   virtual ~Collection() = default;
 
-private:
+  /**
+   * \brief Fills the collection with random elements.
+   * \param collection The collection to fill.
+   * \param size The number of random elements to add.
+   */
+  static void fillWithRandom(Collection& collection, int size);
+
+  /**
+   * \brief Fills the collection with elements from a file.
+   * \param collection The collection to fill.
+   * \param filename The name of the file to read elements from.
+   */
+  static void fillFromFile(Collection& collection, const std::string& filename);
+
   /**
    * \brief Prints the elements of the collection.
    */
   virtual void print() const = 0;
 
   /**
-  * \brief Adds an element to the collection at the specified index.
-  * \param element The element to add.
-  * \param index The index at which to add the element.
-  */
+   * \brief Adds an element to the collection at the specified index.
+   * \param element The element to add.
+   * \param index The index at which to add the element.
+   */
   virtual void add(int element, long index) = 0;
-
+  /**
+   * \brief Adds an element to the collection at the end.
+   * \param element The element to add.
+   */
+  virtual void add(int element) = 0;
   /**
    * \brief Removes an element from the collection at the specified index.
    * \param index The index of the element to remove.
@@ -72,4 +91,4 @@ private:
   [[nodiscard]] virtual long getSize() const = 0;
 };
 
-#endif // COLLECTION_HPP
+#endif  // COLLECTION_HPP

@@ -47,9 +47,13 @@ public:
  void print() const override;
 
  /**
-  * \copydoc Collection::add(int)
+  * \copydoc Collection::add(int, long)
   */
  void add(int element, long index) override;
+ /**
+  * \copydoc Collection::add(int)
+  */
+ void add(int element) override;
 
  /**
   * \copydoc Collection::remove(long)
