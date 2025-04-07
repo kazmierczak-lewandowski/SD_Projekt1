@@ -4,6 +4,8 @@
 
 #include "DoublyLinkedList.hpp"
 
+#include <ncurses.h>
+
 void DoublyLinkedList::add(int element, const long index) {
   auto newNode = std::make_unique<Node>(element);
   if (index == 0) {
@@ -59,17 +61,14 @@ long DoublyLinkedList::get(const int element) const {
   auto current = head.get();
   long index = 0;
   while (current != nullptr) {
-    if (current->data == element)
-      return index;
+    if (current->data == element) return index;
     current = current->next.get();
     index++;
   }
   return -1;
 }
 
-DoublyLinkedList::~DoublyLinkedList() {
-  clear();
-}
+DoublyLinkedList::~DoublyLinkedList() { clear(); }
 
 void DoublyLinkedList::print() const {
   auto current = head.get();
@@ -83,9 +82,23 @@ void DoublyLinkedList::print() const {
   }
   std::cout << ']' << std::endl;
 }
-// TODO convert to doublylinked
+
+void DoublyLinkedList::printBack() const {
+  auto current = tail;
+  std::cout << '[';
+  while (current != nullptr) {
+    std::cout << current->data;
+    current = current->prev;
+    if (current != nullptr) {
+      std::cout << ", ";
+    }
+  }
+  std::cout << ']' << std::endl;
+}
+
 void DoublyLinkedList::remove(const long index) {
   if (index == 0) {
+    head->next->prev = nullptr;
     head = std::move(head->next);
     if (getSize() == 1) {
       tail = nullptr;
@@ -93,10 +106,16 @@ void DoublyLinkedList::remove(const long index) {
     decreaseSize();
     return;
   }
+  if (index == getSize() - 1) {
+    tail = tail->prev;
+    tail->next = nullptr;
+    return;
+  }
   auto current = head.get();
   for (long i = 0; i < index - 1; i++) {
     current = current->next.get();
   }
+  current->next->next->prev = current;
   current->next = std::move(current->next->next);
   if (index == getSize() - 1) {
     tail = current;

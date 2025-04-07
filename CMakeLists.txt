@@ -9,6 +9,5 @@ add_executable(SD_Projekt1 main.cpp
         LinkedList.cpp
         Collection.cpp
         DoublyLinkedList.cpp
-        DoublyLinkedList.hpp
 )
 target_link_libraries(SD_Projekt1 ${CURSES_LIBRARIES})
