@@ -35,7 +35,7 @@ class Collection {
    * \param collection The collection to fill.
    * \param size The number of random elements to add.
    */
-  static void fillWithRandom(Collection& collection, int size);
+  static void fillWithRandom(Collection& collection);
   /**
    * \brief Fills the collection with elements from a file.
    * \param collection The collection to fill.

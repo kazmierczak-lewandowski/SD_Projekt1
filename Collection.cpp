@@ -13,6 +13,7 @@ void Collection::fillWithRandom(Collection& collection) {
     collection.add(Utils::rng(0, 1000000));
   }
 }
+
 void Collection::fillFromFile(Collection& collection,
                               const std::string& filename) {
   std::ifstream file(filename);
