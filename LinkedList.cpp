@@ -41,7 +41,9 @@ void LinkedList::add(int element) {
 }
 
 void LinkedList::clear() {
-  head = nullptr;
+  while (head) {
+    head = std::move(head->next);
+  }
   tail = nullptr;
   clearSize();
 }
@@ -55,6 +57,9 @@ long LinkedList::get(const int element) const {
     index++;
   }
   return -1;
+}
+LinkedList::~LinkedList() {
+  clear();
 }
 void LinkedList::print() const {
   auto current = head.get();
