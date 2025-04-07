@@ -1,3 +1,4 @@
+#include "Analysis.hpp"
 #include "ArrayList.hpp"
 #include "Collection.hpp"
 #include "DoublyLinkedList.hpp"
@@ -54,7 +55,7 @@ int main() {
   keypad(stdscr, true);
   std::unique_ptr<Collection> collection = nullptr;
   std::vector<std::string> CHOICES{"1. ArrayList", "2. LinkedList",
-                                   "3. DoublyLinkedList", "4. Wyjdz"};
+                                   "3. DoublyLinkedList", "4. Testy", "5. Wyjdz"};
   int highlight = 0;
   menuLoop(CHOICES, highlight);
   switch (highlight) {
@@ -71,6 +72,9 @@ int main() {
     break;
   }
   case 3: {
+    Analysis::analyze(100000, 10000000);
+  }
+  case 4: {
     endwin();
     return 0;
   }
