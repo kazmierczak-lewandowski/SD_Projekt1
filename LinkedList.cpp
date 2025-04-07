@@ -15,22 +15,22 @@ void LinkedList::add(int element, const long index) {
     increaseSize();
     return;
   }
+  if (index == getSize()) {
+    add(element);
+    return;
+  }
   auto current = head.get();
   for (long i = 0; i < index - 1; i++) {
     current = current->next.get();
   }
   newNode->next = std::move(current->next);
   current->next = std::move(newNode);
-  if (index == getSize()) {
-    tail = current->next.get();
-  }
   increaseSize();
 }
 
 void LinkedList::add(int element) {
   auto newNode = std::make_unique<Node>(element);
   if (isEmpty()) {
-    newNode->next = nullptr;
     head = std::move(newNode);
     tail = head.get();
     increaseSize();
