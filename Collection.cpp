@@ -3,15 +3,14 @@
 //
 #include "Collection.hpp"
 
+#include "Utils.hpp"
+
 #include <fstream>
 #include <random>
 
-void Collection::fillWithRandom(Collection& collection, const int size) {
-  std::random_device rd;
-  std::mt19937 rand(rd());
-  std::uniform_int_distribution dist(0, 1000000);
-  for (int i = 0; i < size; i++) {
-    collection.add(dist(rand));
+void Collection::fillWithRandom(Collection& collection) {
+  for (int i = 0; i < collection.getSize(); i++) {
+    collection.add(Utils::rng(0, 1000000));
   }
 }
 void Collection::fillFromFile(Collection& collection,

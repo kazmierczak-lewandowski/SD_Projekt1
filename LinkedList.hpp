@@ -28,7 +28,6 @@ public:
    * \brief Default constructor for the LinkedList class.
    */
   explicit LinkedList() = default;
-
   /**
    * \copydoc Collection::print() const
    */

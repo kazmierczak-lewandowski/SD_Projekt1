@@ -13,7 +13,7 @@
  * \class ArrayList
  * \brief A dynamic array implementation of the Collection class.
  */
-class ArrayList final : private Collection {
+class ArrayList final : public Collection {
  private:
   long capacity;                    ///< The current capacity of the array.
   std::unique_ptr<int[]> elements;  ///< The array of elements.
