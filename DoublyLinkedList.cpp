@@ -2,9 +2,9 @@
 // Created by piotr on 01.04.25.
 //
 
-#include "LinkedList.hpp"
+#include "DoublyLinkedList.hpp"
 
-void LinkedList::add(int element, const long index) {
+void DoublyLinkedList::add(int element, const long index) {
   auto newNode = std::make_unique<Node>(element);
   if (index == 0) {
     newNode->next = std::move(head);
@@ -23,12 +23,17 @@ void LinkedList::add(int element, const long index) {
   for (long i = 0; i < index - 1; i++) {
     current = current->next.get();
   }
+  newNode->prev = current;
   newNode->next = std::move(current->next);
   current->next = std::move(newNode);
+  current->next->next->prev = current->next.get();
+  if (index == getSize()) {
+    tail = current->next.get();
+  }
   increaseSize();
 }
 
-void LinkedList::add(int element) {
+void DoublyLinkedList::add(int element) {
   auto newNode = std::make_unique<Node>(element);
   if (isEmpty()) {
     head = std::move(newNode);
@@ -36,12 +41,13 @@ void LinkedList::add(int element) {
     increaseSize();
     return;
   }
+  newNode->prev = tail;
   tail->next = std::move(newNode);
   tail = tail->next.get();
   increaseSize();
 }
 
-void LinkedList::clear() {
+void DoublyLinkedList::clear() {
   while (head) {
     head = std::move(head->next);
   }
@@ -49,7 +55,7 @@ void LinkedList::clear() {
   clearSize();
 }
 
-long LinkedList::get(const int element) const {
+long DoublyLinkedList::get(const int element) const {
   auto current = head.get();
   long index = 0;
   while (current != nullptr) {
@@ -61,11 +67,11 @@ long LinkedList::get(const int element) const {
   return -1;
 }
 
-LinkedList::~LinkedList() {
+DoublyLinkedList::~DoublyLinkedList() {
   clear();
 }
 
-void LinkedList::print() const {
+void DoublyLinkedList::print() const {
   auto current = head.get();
   std::cout << '[';
   while (current != nullptr) {
@@ -77,8 +83,8 @@ void LinkedList::print() const {
   }
   std::cout << ']' << std::endl;
 }
-
-void LinkedList::remove(const long index) {
+// TODO convert to doublylinked
+void DoublyLinkedList::remove(const long index) {
   if (index == 0) {
     head = std::move(head->next);
     if (getSize() == 1) {
