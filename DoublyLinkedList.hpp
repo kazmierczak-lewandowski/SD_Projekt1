@@ -14,17 +14,17 @@
  * \brief Implementation of a linked list class derived from Collection.
  */
 class DoublyLinkedList final : public Collection {
-private:
+ private:
   struct Node {
-    std::unique_ptr<Node> next = nullptr; ///< Pointer to the next node.
-    Node *prev = nullptr;                 ///< Pointer to the previous node.
-    int data;                             ///< Data stored in the node.
+    std::unique_ptr<Node> next = nullptr;  ///< Pointer to the next node.
+    Node *prev = nullptr;                  ///< Pointer to the previous node.
+    int data;                              ///< Data stored in the node.
     explicit Node(const int value) : data(value) {}
   };
-  std::unique_ptr<Node> head = nullptr; ///< Pointer to the first node.
-  Node *tail = nullptr;                 ///< Pointer to the last node.
+  std::unique_ptr<Node> head = nullptr;  ///< Pointer to the first node.
+  Node *tail = nullptr;                  ///< Pointer to the last node.
 
-public:
+ public:
   /**
    * \brief Default constructor for the DoublyLinkedList class.
    */
@@ -37,6 +37,10 @@ public:
    * \copydoc Collection::print() const
    */
   void print() const override;
+  /**
+   * \brief Prints the elements of the collection backwards.
+   */
+  void printBack() const;
   /**
    * \copydoc Collection::add(int, long)
    */
@@ -71,4 +75,4 @@ public:
   [[nodiscard]] long get(int element) const override;
 };
 
-#endif // DOUBLYLINKEDLIST_HPP
+#endif  // DOUBLYLINKEDLIST_HPP
