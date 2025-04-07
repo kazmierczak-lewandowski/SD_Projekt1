@@ -4,8 +4,8 @@
 
 #ifndef LINKEDLIST_HPP
 #define LINKEDLIST_HPP
-#include <memory>
 #include <iostream>
+#include <memory>
 
 #include "Collection.hpp"
 
@@ -16,12 +16,12 @@
 class LinkedList final : public Collection {
 private:
   struct Node {
-    std::shared_ptr<Node> next = nullptr; ///< Pointer to the next node.
-    int data; ///< Data stored in the node.
+    std::unique_ptr<Node> next = nullptr; ///< Pointer to the next node.
+    int data;                             ///< Data stored in the node.
     explicit Node(const int value) : data(value) {}
   };
-  std::shared_ptr<Node> head = nullptr; ///< Pointer to the first node.
-  std::shared_ptr<Node> tail = nullptr; ///< Pointer to the last node.
+  std::unique_ptr<Node> head = nullptr; ///< Pointer to the first node.
+  Node *tail = nullptr;                 ///< Pointer to the last node.
 
 public:
   /**
@@ -68,4 +68,4 @@ public:
   [[nodiscard]] long get(int element) const override;
 };
 
-#endif //LINKEDLIST_HPP
+#endif // LINKEDLIST_HPP
