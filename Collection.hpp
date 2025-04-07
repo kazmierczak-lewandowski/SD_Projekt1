@@ -12,15 +12,15 @@
  * \brief Abstract base class for a collection of elements.
  */
 class Collection {
- private:
-  long size = 0L;  ///< The current number of elements in the array.
+private:
+  long size = 0L; ///< The current number of elements in the array.
 
- protected:
+protected:
   void increaseSize() { size++; }
   void decreaseSize() { size--; }
   void clearSize() { size = 0; }
 
- public:
+public:
   /**
    * \brief Virtual destructor for the Collection class.
    */
@@ -35,13 +35,14 @@ class Collection {
    * \param collection The collection to fill.
    * \param size The number of random elements to add.
    */
-  static void fillWithRandom(Collection& collection, int size);
+  static void fillWithRandom(Collection &collection, long size);
+
   /**
    * \brief Fills the collection with elements from a file.
    * \param collection The collection to fill.
    * \param filename The name of the file to read elements from.
    */
-  static void fillFromFile(Collection& collection, const std::string& filename);
+  static void fillFromFile(Collection &collection, const std::string &filename);
   /**
    * \brief Prints the elements of the collection.
    */
@@ -90,4 +91,4 @@ class Collection {
   [[nodiscard]] virtual long get(int element) const = 0;
 };
 
-#endif  // COLLECTION_HPP
+#endif // COLLECTION_HPP

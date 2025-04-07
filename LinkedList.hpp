@@ -14,16 +14,16 @@
  * \brief Implementation of a linked list class derived from Collection.
  */
 class LinkedList final : public Collection {
- private:
+private:
   struct Node {
-    std::unique_ptr<Node> next = nullptr;  ///< Pointer to the next node.
-    int data;                              ///< Data stored in the node.
+    std::unique_ptr<Node> next = nullptr; ///< Pointer to the next node.
+    int data;                             ///< Data stored in the node.
     explicit Node(const int value) : data(value) {}
   };
-  std::unique_ptr<Node> head = nullptr;  ///< Pointer to the first node.
-  Node *tail = nullptr;                  ///< Pointer to the last node.
+  std::unique_ptr<Node> head = nullptr; ///< Pointer to the first node.
+  Node *tail = nullptr;                 ///< Pointer to the last node.
 
- public:
+public:
   /**
    * \brief Default constructor for the LinkedList class.
    */
@@ -70,4 +70,4 @@ class LinkedList final : public Collection {
   [[nodiscard]] long get(int element) const override;
 };
 
-#endif  // LINKEDLIST_HPP
+#endif // LINKEDLIST_HPP

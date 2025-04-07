@@ -6,7 +6,8 @@
 #include <fstream>
 #include <random>
 
-void Collection::fillWithRandom(Collection& collection, const int size) {
+void Collection::fillWithRandom(Collection &collection, const long size) {
+  collection.clear();
   std::random_device rd;
   std::mt19937 rand(rd());
   std::uniform_int_distribution dist(0, 1000000);
@@ -14,8 +15,9 @@ void Collection::fillWithRandom(Collection& collection, const int size) {
     collection.add(dist(rand));
   }
 }
-void Collection::fillFromFile(Collection& collection,
-                              const std::string& filename) {
+void Collection::fillFromFile(Collection &collection,
+                              const std::string &filename) {
+  collection.clear();
   std::ifstream file(filename);
   int element;
   while (file >> element) {

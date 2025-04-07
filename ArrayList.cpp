@@ -3,7 +3,7 @@
 //
 
 #include "ArrayList.hpp"
-
+#include <ncurses.h>
 void ArrayList::ensureCapacity() {
   if (capacity == getSize() + 1) {
     grow();
@@ -23,11 +23,16 @@ ArrayList::ArrayList(const int capacity) : capacity(capacity) {
   elements = std::make_unique<int[]>(capacity);
 }
 void ArrayList::print() const {
-  std::cout << '[';
+  ::clear();
+  std::string result = "[";
   for (long i = 0; i < getSize(); i++) {
-    std::cout << elements[i] << ", ";
+    result += std::to_string(elements[i]);
+    if (i != getSize() - 1) {
+      result += ", ";
+    }
   }
-  std::cout << ']' << std::endl;
+  result += "]";
+  printw("%s", result.c_str());
 }
 void ArrayList::add(const int element, const long index) {
   ensureCapacity();
