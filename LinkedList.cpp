@@ -26,6 +26,7 @@ void LinkedList::add(int element, const long index) {
   }
   increaseSize();
 }
+
 void LinkedList::add(int element) {
   auto newNode = std::make_unique<Node>(element);
   if (isEmpty()) {
@@ -47,6 +48,7 @@ void LinkedList::clear() {
   tail = nullptr;
   clearSize();
 }
+
 long LinkedList::get(const int element) const {
   auto current = head.get();
   long index = 0;
@@ -58,9 +60,11 @@ long LinkedList::get(const int element) const {
   }
   return -1;
 }
+
 LinkedList::~LinkedList() {
   clear();
 }
+
 void LinkedList::print() const {
   auto current = head.get();
   std::cout << '[';
@@ -73,6 +77,7 @@ void LinkedList::print() const {
   }
   std::cout << ']' << std::endl;
 }
+
 void LinkedList::remove(const long index) {
   if (index == 0) {
     head = std::move(head->next);
