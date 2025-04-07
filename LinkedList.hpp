@@ -28,12 +28,14 @@ public:
    * \brief Default constructor for the LinkedList class.
    */
   explicit LinkedList() = default;
-
+  /**
+   * \brief Destructor for the LinkedList class.
+   */
+  ~LinkedList() override;
   /**
    * \copydoc Collection::print() const
    */
   void print() const override;
-
   /**
    * \copydoc Collection::add(int, long)
    */
