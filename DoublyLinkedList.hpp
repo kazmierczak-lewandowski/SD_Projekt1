@@ -2,21 +2,22 @@
 // Created by piotr on 01.04.25.
 //
 
-#ifndef LINKEDLIST_HPP
-#define LINKEDLIST_HPP
+#ifndef DOUBLYLINKEDLIST_HPP
+#define DOUBLYLINKEDLIST_HPP
 #include <iostream>
 #include <memory>
 
 #include "Collection.hpp"
 
 /**
- * \class LinkedList
+ * \class DoublyLinkedList
  * \brief Implementation of a linked list class derived from Collection.
  */
-class LinkedList final : public Collection {
+class DoublyLinkedList final : public Collection {
  private:
   struct Node {
     std::unique_ptr<Node> next = nullptr;  ///< Pointer to the next node.
+    Node *prev = nullptr;                  ///< Pointer to the previous node.
     int data;                              ///< Data stored in the node.
     explicit Node(const int value) : data(value) {}
   };
@@ -25,17 +26,21 @@ class LinkedList final : public Collection {
 
  public:
   /**
-   * \brief Default constructor for the LinkedList class.
+   * \brief Default constructor for the DoublyLinkedList class.
    */
-  explicit LinkedList() = default;
+  explicit DoublyLinkedList() = default;
   /**
-   * \brief Destructor for the LinkedList class.
+   * \brief Destructor for the DoublyLinkedList class.
    */
-  ~LinkedList() override;
+  ~DoublyLinkedList() override;
   /**
    * \copydoc Collection::print() const
    */
   void print() const override;
+  /**
+   * \brief Prints the elements of the collection backwards.
+   */
+  void printBack() const;
   /**
    * \copydoc Collection::add(int, long)
    */
@@ -70,4 +75,4 @@ class LinkedList final : public Collection {
   [[nodiscard]] long get(int element) const override;
 };
 
-#endif  // LINKEDLIST_HPP
+#endif  // DOUBLYLINKEDLIST_HPP
