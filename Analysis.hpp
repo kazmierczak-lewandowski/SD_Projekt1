@@ -13,28 +13,32 @@
 
 class Analysis {
 private:
-  constexpr static int ITERATIONS = 25;
+  constexpr static int ITERATIONS = 30;
 
-  static void initCollectionsForAddTests(int size, ArrayList &arrayList,
+  static long initCollectionsForTests(int size, ArrayList &arrayList,
                                          LinkedList &linkedList,
                                          DoublyLinkedList &doublyLinkedList);
-  static std::vector<long> testAddingTime(ArrayList &arrayList,
+  static std::vector<long> testAddTime(ArrayList &arrayList,
                                           LinkedList &linkedList,
                                           DoublyLinkedList &doublyLinkedList,
                                           long index);
-  static std::vector<long> testAddingTimeAverage(int size, long index);
+  static std::vector<long> testAddTimeAverage(int size, long index);
+  static std::vector<long> testRemoveTime(ArrayList &arrayList,
+                                          LinkedList &linkedList,
+                                          DoublyLinkedList &doublyLinkedList,
+                                          long index);
+  static std::vector<long> testRemoveTimeAverage(int size, long index);
   static std::vector<std::map<int, long>>
-  analyzeAdding(int minSize, int maxSize, int index,
-                      const char *message);
-  static std::vector<std::map<int, long>> analyzeAddingFront(int minSize,
+  analyzeAdding(int minSize, int maxSize, int index, const char *message);
+  static std::vector<std::map<int, long>> analyzeAddFront(int minSize,
                                                              int maxSize);
-  static std::vector<std::map<int, long>> analyzeAddingBack(int minSize,
+  static std::vector<std::map<int, long>> analyzeAddBack(int minSize,
                                                             int maxSize);
-  static std::vector<std::map<int, long>> analyzeRemovingRandom(int minSize,
-                                                                int maxSize);
-  static std::vector<std::map<int, long>> analyzeRemovingFront(int minSize,
+  static std::vector<std::map<int, long>>
+  analyzeRemove(int minSize, int maxSize, int index, const char *message);
+  static std::vector<std::map<int, long>> analyzeRemoveFront(int minSize,
                                                                int maxSize);
-  static std::vector<std::map<int, long>> analyzeRemovingBack(int minSize,
+  static std::vector<std::map<int, long>> analyzeRemoveBack(int minSize,
                                                               int maxSize);
   static std::vector<std::map<int, long>> analyzeRandomFind(int minSize,
                                                             int maxSize);
