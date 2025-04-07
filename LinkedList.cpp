@@ -15,7 +15,7 @@ void LinkedList::add(int element, const long index) {
     increaseSize();
     return;
   }
-  Node* current = head.get();
+  auto current = head.get();
   for (long i = 0; i < index - 1; i++) {
     current = current->next.get();
   }
@@ -35,7 +35,7 @@ void LinkedList::add(int element) {
     increaseSize();
     return;
   }
-  tail->next = move(newNode);
+  tail->next = std::move(newNode);
   tail = tail->next.get();
   increaseSize();
 }
@@ -49,7 +49,8 @@ long LinkedList::get(const int element) const {
   auto current = head.get();
   long index = 0;
   while (current != nullptr) {
-    if (current->data == element) return index;
+    if (current->data == element)
+      return index;
     current = current->next.get();
     index++;
   }
@@ -77,7 +78,7 @@ void LinkedList::remove(const long index) {
     return;
   }
   auto current = head.get();
-  for (long i = 0; i < index-1; i++) {
+  for (long i = 0; i < index - 1; i++) {
     current = current->next.get();
   }
   current->next = std::move(current->next->next);
