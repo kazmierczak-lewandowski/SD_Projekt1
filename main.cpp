@@ -53,6 +53,7 @@ long getInput(const std::string &message) {
 int main() {
   initscr();
   keypad(stdscr, true);
+  curs_set(0);
   std::unique_ptr<Collection> collection = nullptr;
   std::vector<std::string> CHOICES{"1. ArrayList", "2. LinkedList",
                                    "3. DoublyLinkedList", "4. Testy", "5. Wyjdz"};

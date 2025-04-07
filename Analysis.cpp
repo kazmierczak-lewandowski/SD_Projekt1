@@ -8,7 +8,8 @@
 
 #include <chrono>
 #include <fstream>
-#include <print>
+#include <ncurses.h>
+
 long Analysis::initCollectionsForTests(const int size, ArrayList &arrayList,
                                        LinkedList &linkedList,
                                        DoublyLinkedList &doublyLinkedList) {
@@ -74,7 +75,10 @@ std::vector<long> Analysis::testAddTimeAverage(const int size,
     DoublyLinkedList doublyLinkedList;
 
     initCollectionsForTests(size, arrayList, linkedList, doublyLinkedList);
-    std::print("{} test for {}\n", i, size);
+    move(1, 0);
+    clrtoeol();
+    printw("%s", std::format("{} test for {}\n", i, size).c_str());
+    refresh();
     std::vector<long> results;
     if (index == -1)
       results = testAddTime(arrayList, linkedList, doublyLinkedList,
@@ -119,7 +123,7 @@ std::vector<long> Analysis::testRemoveTime(ArrayList &arrayList,
   return {res1, res2, res3};
 }
 
-std::vector<long> Analysis::testRemoveTimeAverage(int size, long index) {
+std::vector<long> Analysis::testRemoveTimeAverage(int size, const long index) {
   long res1 = 0;
   long res2 = 0;
   long res3 = 0;
@@ -129,7 +133,10 @@ std::vector<long> Analysis::testRemoveTimeAverage(int size, long index) {
     DoublyLinkedList doublyLinkedList;
 
     initCollectionsForTests(size, arrayList, linkedList, doublyLinkedList);
-    std::print("{} test for {}\n", i, size);
+    move(1, 0);
+    clrtoeol();
+    printw("%s", std::format("{} test for {}\n", i, size).c_str());
+    refresh();
     std::vector<long> results;
     if (index == -1)
       results = testRemoveTime(arrayList, linkedList, doublyLinkedList,
@@ -149,7 +156,8 @@ std::vector<std::map<int, long>> Analysis::analyzeAdding(const int minSize,
                                                          const int maxSize,
                                                          const int index,
                                                          const char *message) {
-  std::cout << message << std::endl;
+  mvprintw(0, 0, "%s", message);
+  refresh();
   std::map<int, long> data1;
   std::map<int, long> data2;
   std::map<int, long> data3;
@@ -159,7 +167,6 @@ std::vector<std::map<int, long>> Analysis::analyzeAdding(const int minSize,
     data1.insert(std::pair(i, results[0]));
     data2.insert(std::pair(i, results[1]));
     data3.insert(std::pair(i, results[2]));
-    std::print("Test for {} ended\n", i);
   }
   return {data1, data2, data3};
 }
@@ -177,7 +184,8 @@ std::vector<std::map<int, long>> Analysis::analyzeRemove(const int minSize,
                                                          const int maxSize,
                                                          const int index,
                                                          const char *message) {
-  std::cout << message << std::endl;
+  mvprintw(0, 0, "%s", message);
+  refresh();
   std::map<int, long> data1;
   std::map<int, long> data2;
   std::map<int, long> data3;
@@ -187,7 +195,6 @@ std::vector<std::map<int, long>> Analysis::analyzeRemove(const int minSize,
     data1.insert(std::pair(i, results[0]));
     data2.insert(std::pair(i, results[1]));
     data3.insert(std::pair(i, results[2]));
-    std::print("Test for {} ended\n", i);
   }
   return {data1, data2, data3};
 }
@@ -201,7 +208,8 @@ Analysis::analyzeRemoveBack(const int minSize, const int maxSize) {
 }
 std::vector<std::map<int, long>>
 Analysis::analyzeRandomFind(const int minSize, const int maxSize) {
-  std::cout << "Analyzing finding random element" << std::endl;
+  mvprintw(0, 0, "Analyzing finding random element");
+  refresh();
   std::map<int, long> data1;
   std::map<int, long> data2;
   std::map<int, long> data3;
@@ -217,7 +225,10 @@ Analysis::analyzeRandomFind(const int minSize, const int maxSize) {
 
       initCollectionsForTests(i, arrayList, linkedList, doublyLinkedList);
       const int elementToFind = (Utils::rng(0, i));
-      std::print("{} test for {}\n", j, i);
+      move(1, 0);
+      clrtoeol();
+      printw("%s", std::format("{} test for {}\n", j, i).c_str());
+      refresh();
 
       // Testing ArrayList
       auto start = std::chrono::high_resolution_clock::now();
@@ -246,7 +257,6 @@ Analysis::analyzeRandomFind(const int minSize, const int maxSize) {
     data1.insert(std::pair(i, res1 / ITERATIONS));
     data2.insert(std::pair(i, res2 / ITERATIONS));
     data3.insert(std::pair(i, res3 / ITERATIONS));
-    std::print("Test for {} ended\n", i);
   }
   return {data1, data2, data3};
 }
@@ -263,6 +273,7 @@ void Analysis::writeToFile(const std::string &filename,
   ofs.close();
 }
 void Analysis::analyze(const int minSize, const int maxSize) {
+  clear();
   std::vector<std::map<int, long>> data =
       analyzeAdding(minSize, maxSize, -1, "Analyzing Adding at Random");
   writeToFile("ArrayListRandomAdd.csv", data[0]);
