@@ -13,7 +13,8 @@ void DoublyLinkedList::add(int element, const long index) {
     head = std::move(newNode);
     if (isEmpty()) {
       tail = head.get();
-    } else {
+    }
+    else {
       head->next->prev = head.get();
     }
     increaseSize();

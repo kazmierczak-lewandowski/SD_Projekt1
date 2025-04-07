@@ -114,7 +114,8 @@ int main() {
       clear();
       if (res == -1) {
         printw("Nie znaleziono elementu\n");
-      } else {
+      }
+      else {
         printw("Znaleziono element na pozycji %ld\n", res);
       }
       getch();
