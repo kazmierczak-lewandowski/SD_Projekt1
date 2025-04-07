@@ -8,5 +8,6 @@ add_executable(SD_Projekt1 main.cpp
         ArrayList.cpp
         LinkedList.cpp
         Collection.cpp
+        DoublyLinkedList.cpp
 )
 target_link_libraries(SD_Projekt1 ${CURSES_LIBRARIES})
