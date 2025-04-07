@@ -10,8 +10,8 @@
 #include <fstream>
 #include <print>
 long Analysis::initCollectionsForTests(const int size, ArrayList &arrayList,
-                                          LinkedList &linkedList,
-                                          DoublyLinkedList &doublyLinkedList) {
+                                       LinkedList &linkedList,
+                                       DoublyLinkedList &doublyLinkedList) {
   std::ifstream ifs("../random_integers.txt");
   if (!ifs.is_open()) {
     std::cerr << "Failed to open file random_integers.txt" << std::endl;
@@ -33,9 +33,9 @@ long Analysis::initCollectionsForTests(const int size, ArrayList &arrayList,
 }
 
 std::vector<long> Analysis::testAddTime(ArrayList &arrayList,
-                                           LinkedList &linkedList,
-                                           DoublyLinkedList &doublyLinkedList,
-                                           const long index) {
+                                        LinkedList &linkedList,
+                                        DoublyLinkedList &doublyLinkedList,
+                                        const long index) {
   const int value = Utils::rng(0, 10000000);
   // Testing ArrayList
   auto start = std::chrono::high_resolution_clock::now();
@@ -133,9 +133,10 @@ std::vector<long> Analysis::testRemoveTimeAverage(int size, long index) {
     std::vector<long> results;
     if (index == -1)
       results = testRemoveTime(arrayList, linkedList, doublyLinkedList,
-                            Utils::rng(size / 4, size - size / 4));
+                               Utils::rng(size / 4, size - size / 4));
     else if (index == -2)
-      results = testRemoveTime(arrayList, linkedList, doublyLinkedList, size-1);
+      results =
+          testRemoveTime(arrayList, linkedList, doublyLinkedList, size - 1);
     else
       results = testRemoveTime(arrayList, linkedList, doublyLinkedList, index);
     res1 += results[0];
@@ -172,9 +173,10 @@ std::vector<std::map<int, long>> Analysis::analyzeAddBack(const int minSize,
   return analyzeAdding(minSize, maxSize, -2, "Analyzing Adding at the Front");
 }
 
-std::vector<std::map<int, long>>
-Analysis::analyzeRemove(const int minSize, const int maxSize, const int index,
-                          const char *message) {
+std::vector<std::map<int, long>> Analysis::analyzeRemove(const int minSize,
+                                                         const int maxSize,
+                                                         const int index,
+                                                         const char *message) {
   std::cout << message << std::endl;
   std::map<int, long> data1;
   std::map<int, long> data2;
@@ -189,14 +191,16 @@ Analysis::analyzeRemove(const int minSize, const int maxSize, const int index,
   }
   return {data1, data2, data3};
 }
-std::vector<std::map<int, long>> Analysis::analyzeRemoveFront(const int minSize, const int maxSize) {
+std::vector<std::map<int, long>>
+Analysis::analyzeRemoveFront(const int minSize, const int maxSize) {
   return analyzeRemove(minSize, maxSize, 0, "Analyzing Removing at the Front");
 }
 std::vector<std::map<int, long>>
 Analysis::analyzeRemoveBack(const int minSize, const int maxSize) {
   return analyzeRemove(minSize, maxSize, -2, "Analyzing Removing at the Back");
 }
-std::vector<std::map<int, long>> Analysis::analyzeRandomFind(const int minSize, const int maxSize) {
+std::vector<std::map<int, long>>
+Analysis::analyzeRandomFind(const int minSize, const int maxSize) {
   std::cout << "Analyzing finding random element" << std::endl;
   std::map<int, long> data1;
   std::map<int, long> data2;
@@ -238,7 +242,6 @@ std::vector<std::map<int, long>> Analysis::analyzeRandomFind(const int minSize, 
       res3 +=
           std::chrono::duration_cast<std::chrono::nanoseconds>(finish - start)
               .count();
-
     }
     data1.insert(std::pair(i, res1 / ITERATIONS));
     data2.insert(std::pair(i, res2 / ITERATIONS));
@@ -260,31 +263,31 @@ void Analysis::writeToFile(const std::string &filename,
   ofs.close();
 }
 void Analysis::analyze(const int minSize, const int maxSize) {
-  std::vector<std::map<int, long>> data;
-  //     analyzeAdding(minSize, maxSize, -1, "Analyzing Adding at Random");
-  // writeToFile("ArrayListRandomAdd.csv", data[0]);
-  // writeToFile("LinkedListRandomAdd.csv", data[1]);
-  // writeToFile("DoublyLinkedListRandomAdd.csv", data[2]);
-  // data = analyzeAdding(minSize, maxSize, 0, "Analyzing Adding at the Front");
-  // writeToFile("ArrayListFrontAdd.csv", data[0]);
-  // writeToFile("LinkedListFrontAdd.csv", data[1]);
-  // writeToFile("DoublyLinkedListFrontAdd.csv", data[2]);
-  // data = analyzeAdding(minSize, maxSize, -2, "Analyzing Adding at the Back");
-  // writeToFile("ArrayListBackAdd.csv", data[0]);
-  // writeToFile("LinkedListBackAdd.csv", data[1]);
-  // writeToFile("DoublyLinkedListBackAdd.csv", data[2]);
-  // data = analyzeRemove(minSize, maxSize, -1, "Analyzing Removing at the Back");
-  // writeToFile("ArrayListRandomRemove.csv", data[0]);
-  // writeToFile("LinkedListRandomRemove.csv", data[1]);
-  // writeToFile("DoublyLinkedListRandomRemove.csv", data[2]);
-  // data = analyzeRemove(minSize, maxSize, 0, "Analyzing Removing at the Front");
-  // writeToFile("ArrayListFrontRemove.csv", data[0]);
-  // writeToFile("LinkedListFrontRemove.csv", data[1]);
-  // writeToFile("DoublyLinkedListFrontRemove.csv", data[2]);
-  // data = analyzeRemove(minSize, maxSize, -2, "Analyzing Removing at the Back");
-  // writeToFile("ArrayListBackRemove.csv", data[0]);
-  // writeToFile("LinkedListBackRemove.csv", data[1]);
-  // writeToFile("DoublyLinkedListBackRemove.csv", data[2]);
+  std::vector<std::map<int, long>> data =
+      analyzeAdding(minSize, maxSize, -1, "Analyzing Adding at Random");
+  writeToFile("ArrayListRandomAdd.csv", data[0]);
+  writeToFile("LinkedListRandomAdd.csv", data[1]);
+  writeToFile("DoublyLinkedListRandomAdd.csv", data[2]);
+  data = analyzeAdding(minSize, maxSize, 0, "Analyzing Adding at the Front");
+  writeToFile("ArrayListFrontAdd.csv", data[0]);
+  writeToFile("LinkedListFrontAdd.csv", data[1]);
+  writeToFile("DoublyLinkedListFrontAdd.csv", data[2]);
+  data = analyzeAdding(minSize, maxSize, -2, "Analyzing Adding at the Back");
+  writeToFile("ArrayListBackAdd.csv", data[0]);
+  writeToFile("LinkedListBackAdd.csv", data[1]);
+  writeToFile("DoublyLinkedListBackAdd.csv", data[2]);
+  data = analyzeRemove(minSize, maxSize, -1, "Analyzing Removing at the Back");
+  writeToFile("ArrayListRandomRemove.csv", data[0]);
+  writeToFile("LinkedListRandomRemove.csv", data[1]);
+  writeToFile("DoublyLinkedListRandomRemove.csv", data[2]);
+  data = analyzeRemove(minSize, maxSize, 0, "Analyzing Removing at the Front");
+  writeToFile("ArrayListFrontRemove.csv", data[0]);
+  writeToFile("LinkedListFrontRemove.csv", data[1]);
+  writeToFile("DoublyLinkedListFrontRemove.csv", data[2]);
+  data = analyzeRemove(minSize, maxSize, -2, "Analyzing Removing at the Back");
+  writeToFile("ArrayListBackRemove.csv", data[0]);
+  writeToFile("LinkedListBackRemove.csv", data[1]);
+  writeToFile("DoublyLinkedListBackRemove.csv", data[2]);
   data = analyzeRandomFind(minSize, maxSize);
   writeToFile("ArrayListRandomFind.csv", data[0]);
   writeToFile("LinkedListRandomFind.csv", data[1]);
