@@ -1,5 +1,6 @@
 #include "ArrayList.hpp"
 #include "Collection.hpp"
+#include "DoublyLinkedList.hpp"
 #include "LinkedList.hpp"
 
 #include <memory>
@@ -66,7 +67,7 @@ int main() {
     break;
   }
   case 2: {
-    // collection = std::make_unique<DoublyLinkedList>();
+    collection = std::make_unique<DoublyLinkedList>();
     break;
   }
   case 3: {

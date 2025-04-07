@@ -63,21 +63,15 @@ long LinkedList::get(const int element) const {
   return -1;
 }
 
-LinkedList::~LinkedList() {
-  clear();
-}
+LinkedList::~LinkedList() { clear(); }
 
 void LinkedList::print() const {
-  auto current = head.get();
-  std::cout << '[';
   ::clear();
-  std::shared_ptr<Node> current = head;
+  auto current = head.get();
   std::string res = "[";
   while (current != nullptr) {
-    std::cout << current->data;
-    current = current->next.get();
     res += std::to_string(current->data);
-    current = current->next;
+    current = current->next.get();
     if (current != nullptr) {
       res += ", ";
     }

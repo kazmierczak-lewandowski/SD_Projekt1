@@ -26,7 +26,7 @@ void ArrayList::print() const {
   ::clear();
   std::string result = "[";
   for (long i = 0; i < getSize(); i++) {
-    result+=std::to_string(elements[i]);
+    result += std::to_string(elements[i]);
     if (i != getSize() - 1) {
       result += ", ";
     }

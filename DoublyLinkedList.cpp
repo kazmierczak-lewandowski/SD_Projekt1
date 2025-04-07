@@ -13,8 +13,7 @@ void DoublyLinkedList::add(int element, const long index) {
     head = std::move(newNode);
     if (isEmpty()) {
       tail = head.get();
-    }
-    else {
+    } else {
       head->next->prev = head.get();
     }
     increaseSize();
@@ -64,7 +63,8 @@ long DoublyLinkedList::get(const int element) const {
   auto current = head.get();
   long index = 0;
   while (current != nullptr) {
-    if (current->data == element) return index;
+    if (current->data == element)
+      return index;
     current = current->next.get();
     index++;
   }
@@ -74,29 +74,33 @@ long DoublyLinkedList::get(const int element) const {
 DoublyLinkedList::~DoublyLinkedList() { clear(); }
 
 void DoublyLinkedList::print() const {
+  ::clear();
   auto current = head.get();
-  std::cout << '[';
+  std::string res = "[";
   while (current != nullptr) {
-    std::cout << current->data;
+    res += std::to_string(current->data);
     current = current->next.get();
     if (current != nullptr) {
-      std::cout << ", ";
+      res += ", ";
     }
   }
-  std::cout << ']' << std::endl;
+  res += "]";
+  printw("%s", res.c_str());
 }
 
 void DoublyLinkedList::printBack() const {
+  ::clear();
   auto current = tail;
-  std::cout << '[';
+  std::string res = "[";
   while (current != nullptr) {
-    std::cout << current->data;
+    res += std::to_string(current->data);
     current = current->prev;
     if (current != nullptr) {
-      std::cout << ", ";
+      res += ", ";
     }
   }
-  std::cout << ']' << std::endl;
+  res += "]";
+  printw("%s", res.c_str());
 }
 
 void DoublyLinkedList::remove(const long index) {
