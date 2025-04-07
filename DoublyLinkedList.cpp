@@ -11,6 +11,7 @@ void DoublyLinkedList::add(int element, const long index) {
   if (index == 0) {
     newNode->next = std::move(head);
     head = std::move(newNode);
+    head->next->prev = head.get();
     if (isEmpty()) {
       tail = head.get();
     }
