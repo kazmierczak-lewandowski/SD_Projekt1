@@ -14,6 +14,9 @@ void DoublyLinkedList::add(int element, const long index) {
     if (isEmpty()) {
       tail = head.get();
     }
+    else {
+      head->next->prev = head.get();
+    }
     increaseSize();
     return;
   }
