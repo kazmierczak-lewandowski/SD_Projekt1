@@ -14,9 +14,9 @@
  * \brief A dynamic array implementation of the Collection class.
  */
 class ArrayList final : public Collection {
- private:
-  long capacity;                    ///< The current capacity of the array.
-  std::unique_ptr<int[]> elements;  ///< The array of elements.
+private:
+  long capacity;                   ///< The current capacity of the array.
+  std::unique_ptr<int[]> elements; ///< The array of elements.
 
   /**
    * \brief Ensures that the array has enough capacity to add new elements.
@@ -30,8 +30,9 @@ class ArrayList final : public Collection {
    */
   void grow();
 
- public:
-  static constexpr long DEFAULT_CAPACITY = 10;  ///< The default capacity of the array.
+public:
+  static constexpr long DEFAULT_CAPACITY =
+      10; ///< The default capacity of the array.
 
   /**
    * \brief Constructs an ArrayList with the specified capacity.
@@ -45,14 +46,14 @@ class ArrayList final : public Collection {
    */
   void print() const override;
 
- /**
-  * \copydoc Collection::add(int, long)
-  */
- void add(int element, long index) override;
- /**
-  * \copydoc Collection::add(int)
-  */
- void add(int element) override;
+  /**
+   * \copydoc Collection::add(int, long)
+   */
+  void add(int element, long index) override;
+  /**
+   * \copydoc Collection::add(int)
+   */
+  void add(int element) override;
 
   /**
    * \copydoc Collection::remove(long)
@@ -80,4 +81,4 @@ class ArrayList final : public Collection {
   [[nodiscard]] long get(int element) const override;
 };
 
-#endif  // ARRAYLIST_HPP
+#endif // ARRAYLIST_HPP

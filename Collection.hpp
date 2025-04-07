@@ -35,7 +35,8 @@ public:
    * \param collection The collection to fill.
    * \param size The number of random elements to add.
    */
-  static void fillWithRandom(Collection &collection);
+  static void fillWithRandom(Collection &collection, long size);
+
   /**
    * \brief Fills the collection with elements from a file.
    * \param collection The collection to fill.
