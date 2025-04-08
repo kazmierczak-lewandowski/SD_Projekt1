@@ -5,7 +5,7 @@
 #include "ArrayList.hpp"
 #include <ncurses.h>
 void ArrayList::ensureCapacity() {
-  if (capacity == getSize() + 1) {
+  if (capacity == getSize()) {
     grow();
   }
 }

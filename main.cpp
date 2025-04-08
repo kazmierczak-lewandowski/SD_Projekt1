@@ -1,3 +1,4 @@
+#include "Analysis.hpp"
 #include "ArrayList.hpp"
 #include "Collection.hpp"
 #include "DoublyLinkedList.hpp"
@@ -52,9 +53,11 @@ long getInput(const std::string &message) {
 int main() {
   initscr();
   keypad(stdscr, true);
+  curs_set(0);
   std::unique_ptr<Collection> collection = nullptr;
   std::vector<std::string> CHOICES{"1. ArrayList", "2. LinkedList",
-                                   "3. DoublyLinkedList", "4. Wyjdz"};
+                                   "3. DoublyLinkedList", "4. Testy",
+                                   "5. Wyjdz"};
   int highlight = 0;
   menuLoop(CHOICES, highlight);
   switch (highlight) {
@@ -71,14 +74,23 @@ int main() {
     break;
   }
   case 3: {
+    Analysis::analyze(100000, 10000000);
+    break;
+  }
+  case 4: {
     endwin();
     return 0;
   }
   default:
     break;
   }
-  CHOICES = {"1. Dane z pliku numbers.txt", "2. Losowe dane", "3. Wypisz", "4. Wyszukaj",
-             "5. Dodaj",        "6. Usun",        "7. Wyjdz"};
+  CHOICES = {"1. Dane z pliku numbers.txt",
+             "2. Losowe dane",
+             "3. Wypisz",
+             "4. Wyszukaj",
+             "5. Dodaj",
+             "6. Usun",
+             "7. Wyjdz"};
   do {
     highlight = 0;
     clear();
@@ -109,7 +121,8 @@ int main() {
       clear();
       if (res == -1) {
         printw("Nie znaleziono elementu\n");
-      } else {
+      }
+      else {
         printw("Znaleziono element na pozycji %ld\n", res);
       }
       getch();
