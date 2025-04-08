@@ -41,6 +41,7 @@ public:
    * \brief Prints the elements of the collection backwards.
    */
   void printBack() const;
+  void traverse(long &index, Node *&current);
   /**
    * \copydoc Collection::add(int, long)
    */
