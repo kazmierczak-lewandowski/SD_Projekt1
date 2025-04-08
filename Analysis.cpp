@@ -10,15 +10,15 @@
 #include <fstream>
 #include <ncurses.h>
 
-long Analysis::initCollectionsForTests(const int size, ArrayList &arrayList,
+int Analysis::initCollectionsForTests(const int size, ArrayList &arrayList,
                                        LinkedList &linkedList,
                                        DoublyLinkedList &doublyLinkedList) {
   std::ifstream ifs("../random_integers.txt");
   if (!ifs.is_open()) {
     std::cerr << "Failed to open file random_integers.txt" << std::endl;
   }
-  const int randIndex = Utils::rng(0, size - 1);
-  long ret = 0;
+  const long randIndex = Utils::rng(0, size - 1);
+  int ret = 0;
   for (int k = 0; k < size; k++) {
     int number;
     ifs >> number;
