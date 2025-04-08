@@ -53,22 +53,18 @@ public:
    * \copydoc Collection::remove(long)
    */
   void remove(long index) override;
-
   /**
    * \copydoc Collection::clear()
    */
   void clear() override;
-
   /**
    * \copydoc Collection::getFirst() const
    */
   [[nodiscard]] int getFirst() const override { return head->data; }
-
   /**
    * \copydoc Collection::getLast() const
    */
   [[nodiscard]] int getLast() const override { return tail->data; }
-
   /**
    * \copydoc Collection::get(int) const
    */

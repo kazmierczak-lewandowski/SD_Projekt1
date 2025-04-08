@@ -46,8 +46,6 @@ private:
 public:
   static void writeToFile(const std::string &filename,
                           const std::map<int, long> &data);
-
-public:
   static void analyze(int minSize, int maxSize);
 };
 

@@ -23,7 +23,6 @@ private:
    * \details If the array is full, it calls ArrayList::grow().
    */
   void ensureCapacity();
-
   /**
    * \brief Grows the array to accommodate more elements.
    * \details Grows the array to double its current size.
@@ -40,12 +39,10 @@ public:
    * \throws std::invalid_argument if the capacity is less than or equal to 0.
    */
   explicit ArrayList(int capacity = DEFAULT_CAPACITY);
-
   /**
    * \copydoc Collection::print() const
    */
   void print() const override;
-
   /**
    * \copydoc Collection::add(int, long)
    */
@@ -54,27 +51,22 @@ public:
    * \copydoc Collection::add(int)
    */
   void add(int element) override;
-
   /**
    * \copydoc Collection::remove(long)
    */
   void remove(long index) override;
-
   /**
    * \copydoc Collection::clear()
    */
   void clear() override;
-
   /**
    * \copydoc Collection::getFirst() const
    */
   [[nodiscard]] int getFirst() const override { return elements[0]; }
-
   /**
    * \copydoc Collection::getLast() const
    */
   [[nodiscard]] int getLast() const override { return elements[getSize() - 1]; }
-
   /**
    * \copydoc Collection::get(int) const
    */
