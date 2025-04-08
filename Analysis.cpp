@@ -17,7 +17,7 @@ int Analysis::initCollectionsForTests(const int size, ArrayList &arrayList,
   if (!ifs.is_open()) {
     std::cerr << "Failed to open file random_integers.txt" << std::endl;
   }
-  const long randIndex = Utils::rng(0, size - 1);
+  const long randIndex = Utils::rng(size/4, size - size/4);
   int ret = 0;
   for (int k = 0; k < size; k++) {
     int number;
