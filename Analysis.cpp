@@ -64,6 +64,12 @@ std::vector<long> Analysis::testAddTime(ArrayList &arrayList,
   return {res1, res2, res3};
 }
 
+void Analysis::printSubTest(const int size, const int i) {
+  move(1, 0);
+  clrtoeol();
+  printw("%s", std::format("{} test for {}\n", i, size).c_str());
+  refresh();
+}
 std::vector<long> Analysis::testAddTimeAverage(const int size,
                                                const long index) {
   long res1 = 0;
@@ -75,10 +81,7 @@ std::vector<long> Analysis::testAddTimeAverage(const int size,
     DoublyLinkedList doublyLinkedList;
 
     initCollectionsForTests(size, arrayList, linkedList, doublyLinkedList);
-    move(1, 0);
-    clrtoeol();
-    printw("%s", std::format("{} test for {}\n", i, size).c_str());
-    refresh();
+    printSubTest(size, i);
     std::vector<long> results;
     if (index == -1)
       results = testAddTime(arrayList, linkedList, doublyLinkedList,
@@ -133,10 +136,7 @@ std::vector<long> Analysis::testRemoveTimeAverage(int size, const long index) {
     DoublyLinkedList doublyLinkedList;
 
     initCollectionsForTests(size, arrayList, linkedList, doublyLinkedList);
-    move(1, 0);
-    clrtoeol();
-    printw("%s", std::format("{} test for {}\n", i, size).c_str());
-    refresh();
+    printSubTest(size, i);
     std::vector<long> results;
     if (index == -1)
       results = testRemoveTime(arrayList, linkedList, doublyLinkedList,

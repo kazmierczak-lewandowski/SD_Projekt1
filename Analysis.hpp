@@ -46,6 +46,7 @@ private:
                                        LinkedList &linkedList,
                                        DoublyLinkedList &doublyLinkedList,
                                        long index);
+  static void printSubTest(int size, int i);
   /**
    * @brief Computes the average time taken to add elements to collections.
    * @param size The size of the collections.
