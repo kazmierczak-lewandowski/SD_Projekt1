@@ -1,6 +1,3 @@
-Here is the `Analysis.hpp` file documented using Doxygen comments:
-
-```cpp
 //
 // Created by kazik on 4/7/25.
 //
