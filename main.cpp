@@ -75,7 +75,7 @@ int main() {
   }
   case 3: {
     Analysis::analyze(100000, 10000000);
-    break;
+    return 0;
   }
   case 4: {
     endwin();
