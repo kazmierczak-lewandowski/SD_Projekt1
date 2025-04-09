@@ -60,7 +60,7 @@ void ArrayList::clear() {
 }
 long ArrayList::get(const int element) const {
   long reverse = getSize()-1;
-  for (long i = 0; i < reverse; i++) {
+  for (long i = 0; i <= reverse; i++) {
     if (elements[i] == element) {
       return i;
     }
