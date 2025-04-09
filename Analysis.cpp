@@ -223,13 +223,8 @@ Analysis::analyzeRandomFind(const int minSize, const int maxSize) {
       LinkedList linkedList;
       DoublyLinkedList doublyLinkedList;
 
-      initCollectionsForTests(i, arrayList, linkedList, doublyLinkedList);
-      const int elementToFind = (Utils::rng(0, i));
-      move(1, 0);
-      clrtoeol();
-      printw("%s", std::format("{} test for {}\n", j, i).c_str());
-      refresh();
-
+      const int elementToFind = initCollectionsForTests(i, arrayList, linkedList, doublyLinkedList);
+      printSubTest(j, i);
       // Testing ArrayList
       auto start = std::chrono::high_resolution_clock::now();
       arrayList.get(elementToFind);
@@ -287,7 +282,7 @@ void Analysis::analyze(const int minSize, const int maxSize) {
   writeToFile("ArrayListBackAdd.csv", data[0]);
   writeToFile("LinkedListBackAdd.csv", data[1]);
   writeToFile("DoublyLinkedListBackAdd.csv", data[2]);
-  data = analyzeRemove(minSize, maxSize, -1, "Analyzing Removing at the Back");
+  data = analyzeRemove(minSize, maxSize, -1, "Analyzing Removing at Random");
   writeToFile("ArrayListRandomRemove.csv", data[0]);
   writeToFile("LinkedListRandomRemove.csv", data[1]);
   writeToFile("DoublyLinkedListRandomRemove.csv", data[2]);
