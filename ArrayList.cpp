@@ -59,10 +59,15 @@ void ArrayList::clear() {
   capacity = DEFAULT_CAPACITY;
 }
 long ArrayList::get(const int element) const {
-  for (long i = 0; i < getSize(); i++) {
+  long reverse = getSize()-1;
+  for (long i = 0; i < reverse; i++) {
     if (elements[i] == element) {
       return i;
     }
+    if (elements[reverse] == element) {
+      return reverse;
+    }
+    reverse--;
   }
   return -1;
 }
